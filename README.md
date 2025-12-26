@@ -37,103 +37,6 @@ A aplicação foi desenvolvida com uma arquitetura que utiliza o padrão *Applic
 * **Testes:**
     * **Pytest:** Framework para testes unitários.
 
-## 🚀 Como Executar o Projeto Localmente
-
-Siga os passos abaixo para configurar e rodar a aplicação em seu ambiente de desenvolvimento.
-
-### Pré-requisitos
-
-* **Python 3.8+**
-* **Git**
-* Uma instância do **MongoDB** (local ou na nuvem, como o MongoDB Atlas).
-
-### Passos para Instalação
-
-1.  **Clone o repositório:**
-    ```bash
-    git clone [https://github.com/seu-usuario/stylesync_project.git](https://github.com/seu-usuario/stylesync_project.git)
-    cd stylesync_project
-    ```
-
-2.  **Crie e ative um ambiente virtual:**
-    ```bash
-    # Para Unix/macOS
-    python3 -m venv venv
-    source venv/bin/activate
-
-    # Para Windows
-    python -m venv venv
-    .\venv\Scripts\activate
-    ```
-
-3.  **Crie o arquivo `requirements.txt`** com o seguinte conteúdo:
-    ```txt
-    Flask
-    pymongo
-    python-dotenv
-    pydantic
-    PyJWT
-    pytest
-    ```
-
-4.  **Instale as dependências:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-5.  **Configure as variáveis de ambiente:**
-    * Crie um arquivo chamado `.env` na raiz do projeto.
-    * Copie o conteúdo do exemplo abaixo para o seu `.env` e substitua pelos seus valores.
-
-    ```ini
-    # .env.example
-    # Chave secreta para o Flask e JWT. Use um valor longo e aleatório.
-    SECRET_KEY="uma-chave-secreta-muito-forte-e-aleatoria"
-
-    # String de conexão do seu banco de dados MongoDB.
-    MONGO_URI="mongodb+srv://<seu_usuario>:<sua_senha>@<seu_cluster>.mongodb.net/<nome_do_banco>?retryWrites=true&w=majority"
-    ```
-
-6.  **Execute a aplicação:**
-    ```bash
-    python run.py
-    ```
-    A aplicação estará rodando em `http://127.0.0.1:5000`.
-
-##  документи API Endpoints
-
-A API segue os princípios REST. Para acessar os endpoints protegidos, inclua o token JWT no cabeçalho da requisição: `Authorization: Bearer <seu_token>`.
-
-| Método | Endpoint                    | Protegido? | Descrição                                        |
-| :----- | :-------------------------- | :--------: | :------------------------------------------------- |
-| `POST` | `/login`                    |     Não    | Autentica um usuário e retorna um `access_token`.  |
-| `GET`  | `/produtos`                 |     Não    | Lista todos os produtos cadastrados.               |
-| `GET`  | `/produto/<id>`             |     Não    | Retorna os detalhes de um produto específico.      |
-| `POST` | `/produtos`                 |     Sim    | Cria um novo produto.                              |
-| `PUT`  | `/produto/<id>`             |     Sim    | Atualiza um produto existente.                     |
-| `DELETE`| `/produto/<id>`             |     Sim    | Deleta um produto existente.                       |
-| `POST` | `/vendas/upload`            |     Sim    | Faz o upload de um arquivo `.csv` de vendas.       |
-
-### Exemplo: Criar um Novo Produto
-
-* **Endpoint:** `POST /produtos`
-* **Corpo da Requisição (JSON):**
-    ```json
-    {
-        "name": "Caneca Oficial do Curso",
-        "price": 49.90,
-        "description": "Uma caneca para tomar seu café enquanto coda.",
-        "stock": 150
-    }
-    ```
-* **Resposta de Sucesso (201 Created):**
-    ```json
-    {
-        "message": "Produto criado com sucesso!",
-        "id": "62e3f8c6b7d4a5e1f6e2c3d4"
-    }
-    ```
-
 ## 🌐 Interface Web
 
 O projeto também serve uma interface web simples, construída com Flask Templates e Bootstrap, que permite interagir com a API. As páginas incluem:
@@ -143,18 +46,11 @@ O projeto também serve uma interface web simples, construída com Flask Templat
 * Formulário para adicionar produtos (`/produtos/novo`)
 * Formulário para upload de vendas (`/vendas/upload`)
 
-## ✅ Testes
 
-O projeto contém uma introdução a testes unitários com Pytest para garantir a qualidade do código. Para executar os testes, rode o seguinte comando na raiz do projeto:
-
-```bash
-pytest
-```
-
-## 🗺️ Roadmap (Próximos Passos)
 
 Esta aplicação é uma base sólida que pode ser expandida. Algumas melhorias futuras planejadas incluem:
 * **Containerização com Docker:** Facilitar o deploy e a portabilidade da aplicação.
 * **Pipeline de CI/CD:** Automatizar os testes e o deploy com ferramentas como GitHub Actions.
 * **Cache com Redis:** Melhorar a performance das rotas de leitura mais acessadas.
 * **Sistema de Permissões (RBAC):** Criar diferentes níveis de acesso para os usuários (ex: admin, vendedor).
+
